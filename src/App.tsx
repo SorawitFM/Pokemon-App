@@ -1,15 +1,33 @@
 import { useState } from 'react'
+import * as React from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider, Route, Link, } from "react-router-dom";
 
+import HomePage from '@/pages/home';
+import DetailPage from '@/pages/detail';
 import './App.css'
 
+
+
+
 function App() {
-  // const [count, setCount] = useState(0)
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <HomePage />
+      ),
+    },
+    {
+      path: "/detail",
+      element: <DetailPage />,
+    },
+  ]);
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <RouterProvider router={router} />
     </>
   )
 }
