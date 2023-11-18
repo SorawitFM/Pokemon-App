@@ -1,4 +1,6 @@
 import React from 'react'
+import { pokemonListServie } from '@/service'
+
 
 const HomePage = () => {
     return (
