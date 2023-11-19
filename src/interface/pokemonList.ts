@@ -1,9 +1,8 @@
 export interface IpokemonListResponse {
-    data: object
     count: number
     next: string
     previous: null
-    results: []
+    results: IpokemonListItem[]
 }
 
 
