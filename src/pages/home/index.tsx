@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { pokemonListServie } from '@/service'
+import SearchForm from '@/components/SearchForm'
 
 
 const HomePage = () => {
@@ -13,10 +14,15 @@ const HomePage = () => {
     }, [])
 
     return (
-        <div className='bg-white w-[90%] m-[auto] max-w-[1100px]'>
-            <div>
-                <img src="/images/logo.webp" className='max-h-[80px] mt-[20px]' alt="" />
+        <div className='w-[90%] m-[auto] max-w-[1100px]'>
+            <div className='flex justify-center'>
+                <img
+                    src="/images/logo.webp"
+                    className='max-h-[80px] mt-[20px]'
+                    alt=""
+                />
             </div>
+            < SearchForm />
         </div>
 
     )
