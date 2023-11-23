@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { IpokemonDetailResponse } from '@/interface/pokemonDetail'
 
 
-const initStore = {
+const initStore = { //ค่าเริ่มต้น
     pokemon: {
         data: [],
         loading: false,
@@ -27,7 +27,10 @@ type usePokemonListStoreType = {
 }
 
 
-const usePokemonListStore = create<usePokemonListStoreType>((set) => ({
-    ...initStore
+export const usePokemonListStore = create<usePokemonListStoreType>((set) => ({
+    ...initStore, //ค่าเริ่มต้น
+    setPokemonList: (value: pokemonType) => set({ pokemon: value }), //ถ้าเรียบfunction ก็เหมือน setPokemonList(value) แล้วทำ set({ pokemon: value })
+    setFetchPokemonList: (value: pokemonType) => set({ pokemon: value }),
+    clearPokemon: () => set({ ...initStore })
 }))
 
