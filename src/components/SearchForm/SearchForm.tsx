@@ -1,7 +1,10 @@
 import React from 'react'
 import { generationList, typesList, sortList } from '@/utils/optionList'
+import { useSearchForm } from '@/components/SearchForm'
+
 
 const SearchForm = () => {
+    const { } = useSearchForm()
     return (
         <form className='grid grid-cols-4 gap-2'>
             <div>
@@ -11,7 +14,7 @@ const SearchForm = () => {
                 </label>
                 <select id="generation" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     {generationList.map((item, index) => {
-                        return <option key={`generation-key-${index}`} value={index} selected>{item.name}</option>
+                        return <option key={`generation-key-${index}`} value={index}>{item.name}</option>
                     })}
                 </select>
             </div>
@@ -22,7 +25,7 @@ const SearchForm = () => {
                 </label>
                 <select id="type" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     {typesList.map((item, index) => {
-                        return <option key={`type-key-${index}`} value={item} selected>{item}</option>
+                        return <option key={`type-key-${index}`} value={item}>{item}</option>
                     })}
                 </select>
             </div>
@@ -33,7 +36,7 @@ const SearchForm = () => {
                 </label>
                 <select id="sort" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     {sortList.map((item, index) => {
-                        return <option key={`sort-key-${index}`} value={item} selected>{item}</option>
+                        return <option key={`sort-key-${index}`} value={item}>{item}</option>
                     })}
                 </select>
             </div>

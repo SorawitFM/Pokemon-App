@@ -6,7 +6,13 @@ const useSearchForm = () => {
         const responseList = await pokemonListServie.getPokemonList()
         if (responseList.status === 200) {
             const responseResult = responseList.data.results || []
-            console.log('data', responseResult)
+            const pokeList = []
+            for (const pokemon of responseResult) {
+                const response = await pokemonDetailServie.getPokemonDetail(pokemon.name)
+                const pokeData = response.data
+                pokeList.push({ ...pokeData })
+            }
+            console.log('pokeList', pokeList)
         }
 
     }
@@ -14,6 +20,8 @@ const useSearchForm = () => {
     useEffect(() => {
         callData()
     }, [])
+
+    return {}
 }
 
 
