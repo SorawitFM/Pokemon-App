@@ -1,7 +1,3 @@
-export interface IpokemonListItem {
-    name: string
-    url: string
-}
 
 export interface IpokemonListResponse {
     count: number
@@ -9,5 +5,8 @@ export interface IpokemonListResponse {
     previous: null
     results: IpokemonListItem[]
 }
-
+export interface IpokemonListItem {
+    name: string
+    url: string
+}
 

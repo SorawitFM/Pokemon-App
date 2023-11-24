@@ -1,17 +1,9 @@
-import React, { useEffect } from 'react'
-import { pokemonListServie } from '@/service'
 import SearchForm from '@/components/SearchForm'
+import { usePokemonListStore } from '@/store/pokemonList'
 
 
 const HomePage = () => {
-    const callData = async () => {
-        const data = await pokemonListServie.getPokemonList()
-        console.log(data, data.data)
-    }
-
-    useEffect(() => {
-        callData()
-    }, [])
+    const { fetchPokemon } = usePokemonListStore()
 
     return (
         <div className='w-[90%] m-[auto] max-w-[1100px]'>
@@ -23,6 +15,11 @@ const HomePage = () => {
                 />
             </div>
             < SearchForm />
+            <div>
+                {fetchPokemon.data?.map((item) => {
+                    return <div className='text-white' key={`Pokemon-${item.id}`}>{item.name}</div>
+                })}
+            </div>
         </div>
 
     )

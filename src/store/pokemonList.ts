@@ -18,12 +18,15 @@ const initStore = { //ค่าเริ่มต้น
 type pokemonType = {
     data: IpokemonDetailResponse[],
     loading: boolean,
-    error: null | object
+    error: null | any
 }
 
 type usePokemonListStoreType = {
     pokemon: pokemonType,
-    fetchPokemon: pokemonType
+    fetchPokemon: pokemonType,
+    setPokemonList: (value: pokemonType) => void, //ถ้าเรียบfunction ก็เหมือน setPokemonList(value) แล้วทำ set({ pokemon: value })
+    setFetchPokemonList: (value: pokemonType) => void,
+    clearPokemon: () => void,
 }
 
 
