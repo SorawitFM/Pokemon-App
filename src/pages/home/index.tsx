@@ -3,7 +3,8 @@ import { usePokemonListStore } from '@/store/pokemonList'
 
 
 const HomePage = () => {
-    const { fetchPokemon } = usePokemonListStore()
+
+    const { pokemon } = usePokemonListStore()
 
     return (
         <div className='w-[90%] m-[auto] max-w-[1100px]'>
@@ -16,7 +17,7 @@ const HomePage = () => {
             </div>
             < SearchForm />
             <div>
-                {fetchPokemon.data?.map((item) => {
+                {pokemon.data?.map((item) => {
                     return <div className='text-white' key={`Pokemon-${item.id}`}>{item.name}</div>
                 })}
             </div>

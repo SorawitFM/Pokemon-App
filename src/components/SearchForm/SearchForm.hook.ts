@@ -1,3 +1,4 @@
+import { Item } from './../../interface/pokemonDetail';
 import React, { useEffect } from 'react'
 import { pokemonListServie, pokemonDetailServie } from '@/service'
 import { useForm } from "react-hook-form"
@@ -6,7 +7,7 @@ import { usePokemonListStore } from '@/store/pokemonList'
 const useSearchForm = () => {
     const { register, handleSubmit, watch, formState: { errors }, } = useForm() //เป็น pattern ของ library "react-hook-form"
 
-    const { setFetchPokemonList } = usePokemonListStore()//เป็น pattern ของ library "react-hook-form"
+    const { setFetchPokemonList, fetchPokemon, setPokemonList } = usePokemonListStore()//เป็น pattern ของ library "react-hook-form"
 
     const keyword = watch('keyword') //เป็น pattern ของ library "react-hook-form"
 
@@ -25,7 +26,9 @@ const useSearchForm = () => {
             setFetchPokemonList({ data: pokeList, loading: false, error: null })
         } else {
             setFetchPokemonList({
-                data: [], loading: false, error: responseList.error
+                data: [],
+                loading: false,
+                error: responseList.error
             })
         }
 
@@ -34,6 +37,18 @@ const useSearchForm = () => {
     useEffect(() => {
         callData()
     }, [])
+
+    useEffect(() => {
+        const data = fetchPokemon.data.filter((Item) => {
+            return Item.name.toLowerCase().includes(keyword?.toLowerCase())
+        })
+        setPokemonList({
+            data: data,
+            loading: false,
+            error: null
+        })
+    }, [keyword])
+
 
     return {
         fieldKeyword: register('keyword') //เป็น pattern ของ library "react-hook-form"

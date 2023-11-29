@@ -3,12 +3,12 @@ import { IpokemonDetailResponse } from '@/interface/pokemonDetail'
 
 
 const initStore = { //ค่าเริ่มต้น
-    pokemon: {
+    pokemon: { //เป็น pokemon ทีได้จากการ fillter โดย User
         data: [],
         loading: false,
         error: null
     },
-    fetchPokemon: {
+    fetchPokemon: { //เป็น pokemon ทั้งหมด
         data: [],
         loading: false,
         error: null
@@ -33,7 +33,7 @@ type usePokemonListStoreType = {
 export const usePokemonListStore = create<usePokemonListStoreType>((set) => ({
     ...initStore, //ค่าเริ่มต้น
     setPokemonList: (value: pokemonType) => set({ pokemon: value }), //ถ้าเรียบfunction ก็เหมือน setPokemonList(value) แล้วทำ set({ pokemon: value })
-    setFetchPokemonList: (value: pokemonType) => set({ pokemon: value }),
+    setFetchPokemonList: (value: pokemonType) => set({ fetchPokemon: value }),
     clearPokemon: () => set({ ...initStore })
 }))
 
