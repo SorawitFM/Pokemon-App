@@ -1,4 +1,4 @@
-import { Item } from './../../interface/pokemonDetail';
+import { Item, Sprites, Other, DreamWorld } from './../../interface/pokemonDetail';
 import React, { useEffect } from 'react'
 import { pokemonListServie, pokemonDetailServie } from '@/service'
 import { useForm } from "react-hook-form"
@@ -21,7 +21,10 @@ const useSearchForm = () => {
             for (const pokemon of responseResult) {
                 const response = await pokemonDetailServie.getPokemonDetail(pokemon.name)
                 const pokeData = response.data
-                pokeList.push({ ...pokeData })
+                pokeList.push({
+                    ...pokeData, image: pokeData.sprites.other.dream_world.front_default ||
+                        pokeData.sprites.other['official-artwork'].front_default
+                })
             }
             setFetchPokemonList({ data: pokeList, loading: false, error: null })
         } else {
