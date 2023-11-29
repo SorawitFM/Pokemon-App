@@ -9,7 +9,7 @@ const PokemonCard = ({ data }: PokemonCardProp) => {
     return (
 
 
-        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div className="bg-[url('/images/poke-card-bg.png')] bg-center aspect-square w-full bg-cover">
                 <a href="#" className="bg-[url('/images/poke-card-bg.png')]">
                     <img className="rounded-t-lg max-h-[218px] p-[40px] w-full" src={data.image} alt="" />
@@ -25,7 +25,7 @@ const PokemonCard = ({ data }: PokemonCardProp) => {
                         #{data.id}
                     </h5>
                 </div>
-                <div className='flex'>
+                <div className='flex justify-end gap-2 font-bold text-yellow-300 '>
                     {data.types.map((item) => {
                         return <a href="#" className="">
                             {item.type.name}
