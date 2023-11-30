@@ -20,7 +20,7 @@ function App() {
       ),
     },
     {
-      path: "/detail",
+      path: "/detail/:name",
       element: <DetailPage />,
     },
   ]);
