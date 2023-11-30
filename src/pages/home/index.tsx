@@ -18,7 +18,7 @@ const HomePage = () => {
                 />
             </div>
             < SearchForm />
-            <div className='grid grid-cols-4 gap-[20px] mt-[40px]'>
+            <div className='grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] mt-[40px]'>
                 {pokemon.data?.map((item) => {
                     return <PokemonCard data={item} />
                 })}
