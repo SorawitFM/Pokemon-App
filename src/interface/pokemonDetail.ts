@@ -18,7 +18,7 @@ export interface IpokemonDetailResponse {
     stats: Stat[]
     types: Type[]
     weight: number
-    image?: string //เพิ่มเข้ามาตอน create pokemon card 
+    image?: string | undefined //เพิ่มเข้ามาตอน create pokemon card 
 }
 
 export interface Ability {
