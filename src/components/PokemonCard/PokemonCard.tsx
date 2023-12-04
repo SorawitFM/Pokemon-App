@@ -13,7 +13,8 @@ const PokemonCard = ({ image, name, id, types }: PokemonCardProp) => {
     return (
 
 
-        <div className="bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-[10px] max-w-[275px] m-[auto]">
+        <div className="bg-white rounded-lg shadow dark:bg-gray-800 
+        dark:border-gray-700 p-[10px] max-w-[275px] m-[auto] w-full">
             <div className="bg-[url('/images/poke-card-bg.png')] bg-center aspect-square w-full bg-cover">
                 <Link to={`/detail/${name}`} className="bg-[url('/images/poke-card-bg.png')]">
                     <img className="rounded-t-lg h-[218px] p-[40px] w-full" src={image} alt="" />

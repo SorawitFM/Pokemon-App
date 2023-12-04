@@ -2,11 +2,12 @@ import PokemonCard from '@/components/PokemonCard'
 import SearchForm from '@/components/SearchForm'
 import { usePokemonListStore } from '@/store/pokemonList'
 // import { pokemonDetailServie, pokemonListServie } from '@/service'
+import ReactLoading from "react-loading";
 
 
 const HomePage = () => {
 
-    const { pokemon } = usePokemonListStore()
+    const { pokemon, fetchPokemon } = usePokemonListStore()
     console.log('pokemon ', pokemon)
     return (
         <div className='w-[90%] m-[auto] max-w-[1100px]'>
@@ -18,16 +19,26 @@ const HomePage = () => {
                 />
             </div>
             < SearchForm />
-            <div className='grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] mt-[40px]'>
-                {pokemon.data?.map((item) => {
-                    return <PokemonCard
-                        image={item.image || ''}
-                        name={item.name}
-                        id={item.id}
-                        types={item.types}
-                    />
-                })}
-            </div>
+
+            {fetchPokemon.loading && ( //มาจาก Library react-loading
+                <div className='h-[600px] flex justify-center items-center'>
+                    <ReactLoading type="spin" color="#fff" />
+                </div>
+            )}
+
+            {!fetchPokemon.loading && (
+                <div className='grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] mt-[40px]'>
+                    {pokemon.data?.map((item) => {
+                        return <PokemonCard
+                            image={item.image || ''}
+                            name={item.name}
+                            id={item.id}
+                            types={item.types}
+                        />
+                    })}
+                </div>
+            )}
+
         </div>
 
     )
