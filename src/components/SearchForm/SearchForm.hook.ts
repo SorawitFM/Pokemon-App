@@ -1,4 +1,4 @@
-import { Item, Sprites, Other, DreamWorld } from './../../interface/pokemonDetail';
+import { Item, Sprites, Other, DreamWorld, Type, IpokemonDetailResponse } from './../../interface/pokemonDetail';
 import React, { useEffect } from 'react'
 import { pokemonListServie, pokemonDetailServie } from '@/service'
 import { useForm } from "react-hook-form"
@@ -36,7 +36,9 @@ const useSearchForm = () => {
                     })
             }
             setFetchPokemonList({ data: pokeList, loading: false, error: null })
-            setPokemonList({ data: pokeList, loading: false, error: null })
+            //เพื่อให้ได้การ sort ที่ถูกต้อง สลับไปมาได้ระหว่าง generation, type, sort by
+            const data = filterPokemon(pokeList, keyword, type, sort)
+            setPokemonList({ data: data, loading: false, error: null }) //ถ้าใช้ data : pokeList จะสลับไม่ได้
         } else {
             setFetchPokemonList({
                 data: [],
@@ -47,6 +49,38 @@ const useSearchForm = () => {
 
     }
 
+    const filterPokemon = (
+        pokeList: IpokemonDetailResponse[],
+        keyword: string,
+        type: string,
+        sort: 'id' | 'name'
+    ) => {
+        const keywordFilter = pokeList.filter((Item) => {
+            return Item.name.toLowerCase().includes(keyword?.toLowerCase())
+        })
+        const typeFilter = type !== 'all types' ?
+            keywordFilter.filter((item) => {
+                return item.types.find((f) => {
+                    return f.type.name.toLowerCase().includes(type.toLowerCase())
+                })
+            }) : keywordFilter
+
+        return sortBy(typeFilter, sort)
+    }
+
+    const sortBy = (data: IpokemonDetailResponse[], type: 'id' | 'name') => {
+        switch (type) {
+            case 'id':
+                return data.sort((a, b) => a.id - b.id)
+
+            case 'name':
+                return data.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
+
+            default:
+                return data.sort((a, b) => a.id - b.id)
+        }
+    }
+
     useEffect(() => {
         if (generation !== undefined) {
             callData(generationList[generation])
@@ -55,15 +89,14 @@ const useSearchForm = () => {
     }, [generation])
 
     useEffect(() => {
-        const data = fetchPokemon.data.filter((Item) => {
-            return Item.name.toLowerCase().includes(keyword?.toLowerCase())
-        })
+        const data = filterPokemon(fetchPokemon.data, keyword, type, sort)
         setPokemonList({
             data: data,
             loading: false,
             error: null
         })
-    }, [keyword])
+    }, [keyword, type, sort])
+
 
 
     return {

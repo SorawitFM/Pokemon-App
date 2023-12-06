@@ -27,7 +27,7 @@ const HomePage = () => {
             )}
 
             {!fetchPokemon.loading && (
-                <div className='grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] mt-[40px]'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] mt-[40px] justify-center'>
                     {pokemon.data?.map((item) => {
                         return <PokemonCard
                             image={item.image || ''}

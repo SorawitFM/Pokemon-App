@@ -6,7 +6,7 @@ import { useSearchForm } from '@/components/SearchForm'
 const SearchForm = () => {
     const { fieldKeyword, fieldGeneration, fieldSort, fieldType } = useSearchForm() //เป็น pattern ของ library "react-hook-form"
     return (
-        <form className='grid grid-cols-4 gap-[20px]'>
+        <form className='grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-[20px]'>
             <div>
                 <label htmlFor="generation"
                     className="block mb-2 text-mb font-medium text-gray-900 dark:text-white">
